@@ -9,11 +9,11 @@ exports.addUser = async (req, res, next) => {
     if (name.length > 0 && email.length > 0 && password.length > 0) {
       const user = await User.findOne({ where: { email: email } });
       if (user) {
-        return res.status(400).json({ message: "user already exists" });
+        return res.status(403).json({ message: "user already exists" });
       }
 
       bcrypt.hash(password, 10, async (error, hash) => {
-        if (error) throw new Error();
+        if (error) throw new Error(error);
 
         await User.create({
           name: name,
