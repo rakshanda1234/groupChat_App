@@ -10,11 +10,17 @@ app.use(bodyParser.json());
 const sequelize = require("./util/database");
 
 const User = require("./models/user");
+const Message = require("./models/message");
+
+User.hasMany(Message);
+Message.belongsTo(User);
 
 const userRoutes = require("./routes/user");
+const messageRoutes = require("./routes/message");
 const { error } = require("console");
 
 app.use("/user", userRoutes);
+app.use("/message", messageRoutes);
 
 sequelize
   .sync()
