@@ -18,3 +18,12 @@ document.getElementById("chat-form").onsubmit = async (e) => {
     console.log("error while sending msg", error);
   }
 };
+window.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const res = await axios.get("http://localhost:3000/message/fetch");
+    if (res.status === 200) {
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});

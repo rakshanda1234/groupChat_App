@@ -18,6 +18,16 @@ exports.saveMessage = async (req, res, next) => {
   }
 };
 
+exports.fetchMessage = async (req, res, next) => {
+  try {
+    const messages = await Message.findAll();
+    res.status(200).json({ messages: messages });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "could not fetch messages" });
+  }
+};
+
 function isValidMessage(message) {
   if (typeof message === "string" && message.length > 0) {
     return true;
