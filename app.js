@@ -11,16 +11,26 @@ const sequelize = require("./util/database");
 
 const User = require("./models/user");
 const Message = require("./models/message");
+const Group = require("./models/group");
+const GroupUser = require("./models/groupUser");
 
 User.hasMany(Message);
 Message.belongsTo(User);
 
+Group.belongsToMany(User, { through: GroupUser });
+User.belongsToMany(Group, { through: GroupUser });
+
+Group.hasMany(Message);
+Message.belongsTo(Group);
+
 const userRoutes = require("./routes/user");
 const messageRoutes = require("./routes/message");
-const { error } = require("console");
+const chatRoutes = require("./routes/chat");
+const { error, group } = require("console");
 
 app.use("/user", userRoutes);
 app.use("/message", messageRoutes);
+app.use("/chat", chatRoutes);
 
 sequelize
   .sync()

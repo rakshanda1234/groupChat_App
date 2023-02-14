@@ -2,21 +2,17 @@ const Sequelize = require("sequelize");
 
 const sequelize = require("../util/database");
 
-const Message = sequelize.define("message", {
+const GroupUser = sequelize.define("groupuser", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
-  message: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  from: {
-    type: Sequelize.STRING,
-    allowNull: false,
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    default: false,
   },
 });
 
-module.exports = Message;
+module.exports = GroupUser;
