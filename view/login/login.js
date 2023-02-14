@@ -10,7 +10,20 @@ document.getElementById("loginform").onsubmit = async (e) => {
       password,
     });
     console.log(res);
+    if (res.status === 200) {
+      email.value = "";
+      password.value = "";
+      confirm("User logged in successfully!");
+
+      localStorage.setItem("token", res.data.token);
+
+      // window.location.href = 'tracker.html';
+    }
   } catch (error) {
     console.log(error);
+
+    if (error.response.status === 401) {
+      alert("Password is incorrect!");
+    }
   }
 };
