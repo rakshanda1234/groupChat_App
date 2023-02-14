@@ -9,7 +9,8 @@
 
 <body>
     <div class="container" id="form-container">
-        <form action="/login" method="post">
+        <!-- <form action="/login" method="post"> -->
+        <form id="signupform">
             <label for="nameField">Name:</label>
             <input type="text" name="name" id="nameField">
             <label for="emailField">Email:</label>
@@ -21,6 +22,11 @@
             <button type="submit">Sign Up</button>
         </form>
     </div>
+    <div class="container" id="error-container">
+        <p id="error-text"></p>
+    </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"></script>
+<script src="signup.js"></script>
 
 </html>
