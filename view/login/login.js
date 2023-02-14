@@ -17,7 +17,7 @@ document.getElementById("loginform").onsubmit = async (e) => {
 
       localStorage.setItem("token", res.data.token);
 
-      // window.location.href = 'tracker.html';
+      window.location.href = "../chat/chat.html";
     }
   } catch (error) {
     console.log(error);
