@@ -1,6 +1,8 @@
 body {
   position: relative;
   display: flex;
+  margin: 0px;
+  padding: 0px;
 }
 
 footer {
@@ -17,7 +19,7 @@ header {
   padding-bottom: 0.7rem;
   padding-left: 1rem;
   position: fixed;
-  background-color: #2be29c;
+  background-color: #afb1b3;
   width: 100%;
   height: 50px;
   z-index: 1;
@@ -27,7 +29,7 @@ header {
   position: relative;
   float: left;
   width: 40%;
-  background-color: #9dfdd8;
+  background-color: #a6a6a6;
   height: 100%;
   top: 62px;
   overflow: scroll;
@@ -40,12 +42,12 @@ header {
   bottom: 200px;
   min-width: 60%;
   height: 100%;
-  background-color: #c0eedc;
+  background-color: #8b8e8d;
   text-align: end;
   overflow: scroll;
 }
 
-#chat-body p {
+#chat-ul p {
   font-size: 14pt;
 }
 
@@ -94,11 +96,64 @@ header {
   font-size: 14pt;
 }
 
-#chat-list p:hover {
-  color: rgb(66, 23, 207);
+#chat-list div:hover {
+  /* color: rgb(255, 255, 255); */
+  color: #dae4ed;
+  background-color: #afb1b3;
   cursor: pointer;
 }
 
-#chat-list p.active {
-  background-color: #2be29c;
+#chat-list div {
+  display: flex;
+  justify-content: space-between;
+}
+#chat-list button {
+  padding: 1rem;
+  border-radius: 0.8rem;
+  font-size: 14pt;
+  background-color: #afb1b3;
+}
+
+#chat-list button:hover {
+  background-color: #616264;
+  cursor: pointer;
+}
+
+#open-chat {
+  background-color: azure;
+  width: 100%;
+  font-size: 14pt;
+  text-align: center;
+  border-radius: 0.8rem;
+}
+
+.hide {
+  display: none;
+}
+
+#open-chat:hover + .hide {
+  display: block;
+  color: white;
+}
+
+#open-chat:hover {
+  cursor: pointer;
+}
+
+#members-list {
+  position: fixed;
+  right: 0%;
+  top: 110px;
+  width: 60%;
+  height: 100%;
+  background-color: #c6cac9;
+  visibility: hidden;
+}
+
+#members-list.active {
+  visibility: visible;
+}
+
+#close-members-btn {
+  float: right;
 }

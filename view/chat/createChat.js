@@ -18,7 +18,8 @@ document.getElementById("new-chat-form").onsubmit = async (e) => {
     if (res.status === 200) {
       console.log(res.data.group);
       const group = res.data.group;
-      localStorage.setItem("createdGroupId", group.id);
+      sessionStorage.setItem("createdGroupId", group.id);
+
       window.location.href = "../group/group.html";
     }
     if (res.status === 204) {

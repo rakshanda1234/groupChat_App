@@ -17,4 +17,9 @@ router.post(
 );
 router.get("/getGroups", authenticator.authenticate, chatController.getGroups);
 
+router.get(
+  "/getMembers",
+  authenticator.authenticate,
+  chatController.getMembers
+);
 module.exports = router;

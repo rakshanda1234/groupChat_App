@@ -26,11 +26,13 @@ Message.belongsTo(Group);
 const userRoutes = require("./routes/user");
 const messageRoutes = require("./routes/message");
 const chatRoutes = require("./routes/chat");
+const adminRoutes = require("./routes/admin");
 const { error, group } = require("console");
 
 app.use("/user", userRoutes);
 app.use("/message", messageRoutes);
 app.use("/chat", chatRoutes);
+app.use("/admin", adminRoutes);
 
 sequelize
   .sync()

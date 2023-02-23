@@ -7,7 +7,7 @@ document.getElementById("group-name-form").onsubmit = async (e) => {
       "http://localhost:3000/chat/nameTheGroup",
       {
         groupname: groupname.value,
-        groupid: localStorage.getItem("createdGroupId"),
+        groupid: sessionStorage.getItem("createdGroupId"),
       },
       {
         headers: {
@@ -17,6 +17,7 @@ document.getElementById("group-name-form").onsubmit = async (e) => {
     );
     console.log("naming grp response:", res);
     if (res.status === 200) {
+      confirm("Created New Group");
       window.location.href = "../chat/chat.html";
     }
   } catch (error) {

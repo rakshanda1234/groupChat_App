@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const Group = require("../models/group");
 const GroupUser = require("../models/groupUser");
+const { Op } = require("sequelize");
 
 exports.addParticipant = async (req, res, next) => {
   try {
@@ -50,6 +51,36 @@ exports.getGroups = async (req, res, next) => {
       return res.status(201).json({ message: "no groups currently" });
     }
     res.status(200).json({ groups: groups });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "something went wrong" });
+  }
+};
+exports.getMembers = async (req, res, next) => {
+  try {
+    const groupId = +req.query.groupId;
+    // console.log('g r o u p i d', groupId);
+    const members = await GroupUser.findAll({ where: { groupId: groupId } });
+    // console.log(members);
+    let membersToSend = [];
+    for (let i = 0; i < members.length; i++) {
+      const user = await User.findByPk(members[i].userId);
+
+      if (user) {
+        let newPart = {};
+        const userInGroupUser = await GroupUser.findOne({
+          where: { [Op.and]: [{ userId: user.id }, { groupId: groupId }] },
+        });
+        newPart["isAdmin"] = userInGroupUser.isAdmin;
+        const userToSend = {
+          ...user,
+          ...newPart,
+        };
+        membersToSend.push(userToSend);
+      }
+    }
+    // console.log(membersToSend);
+    res.status(200).json({ members: membersToSend });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "something went wrong" });

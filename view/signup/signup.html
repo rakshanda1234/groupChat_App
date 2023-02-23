@@ -4,26 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group Chat Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+
+    <title> Sign Up</title>
 </head>
 
 <body>
     <div class="container" id="form-container">
         <!-- <form action="/login" method="post"> -->
+        <h1 id="signup">Sign Up</h1>
         <form id="signupform">
-            <label for="nameField">Name:</label>
-            <input type="text" name="name" id="nameField">
-            <label for="emailField">Email:</label>
-            <input type="email" name="email" id="emailField">
-            <label for="phoneField">Phone No:</label>
-            <input type="tel" name="phone" id="phoneField">
-            <label for="passwordField">Password:</label>
-            <input type="password" name="password" id="passwordField"><br>
-            <button type="submit">Sign Up</button>
+
+            <div class="txt_field">
+                <input type="text" name="name" id="nameField">
+                <span></span>
+                <label for="nameField">Name:</label>
+            </div>
+
+            <div class="txt_field">
+                <input type="email" name="email" id="emailField">
+                <span></span>
+                <label for="emailField">Email:</label>
+            </div>
+
+            <div class="txt_field">
+                <input type="tel" name="phone" id="phoneField">
+                <span></span>
+                <label for="phoneField">Phone No:</label>
+            </div>
+
+            <div class="txt_field">
+                <input type="password" name="password" id="passwordField"><br>
+                <span></span>
+                <label for="passwordField">Password:</label>
+            </div>
+
+            <button id="submit" type="submit">Sign Up</button>
+
         </form>
-    </div>
-    <div>
-        <a href="../login/login.html">Existing User? Click Here.</a>
+
+        <div class="login_link">
+            <a href="../login/login.html">Existing User? Click Here.</a>
+        </div>
     </div>
     <div class="container" id="error-container">
         <p id="error-text"></p>

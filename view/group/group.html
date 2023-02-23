@@ -5,14 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../signup/style.css">
+
 </head>
 
 <body>
-    <form id="group-name-form">
-        <label for="groupname">Enter group name</label>
-        <input type="text" id="groupname">
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>New Group</h1>
+        <form id="group-name-form">
+            <div class="txt_field">
+                <input type="text" id="groupname">
+                <span></span>
+                <label for="groupname">Enter group name</label>
+            </div>
+            <button id="submit" type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"></script>
 <script src="group.js"></script>
