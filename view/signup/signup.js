@@ -17,7 +17,7 @@ document.getElementById("signupform").onsubmit = async (e) => {
     console.log(res);
     if (res.status === 200) {
       alert("Successfuly signed up!");
-      window.location.href = "login.html";
+      window.location.href = "../login/login.html";
     }
   } catch (error) {
     console.log(error);

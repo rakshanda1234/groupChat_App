@@ -3,7 +3,6 @@ document.getElementById("chat-form").onsubmit = async (e) => {
   try {
     const token = localStorage.getItem("token");
     const message = document.getElementById("message").value;
-
     const groupId = localStorage.getItem("groupId");
     if (!groupId) {
       alert("Please select a group first.");
@@ -49,34 +48,25 @@ async function fetchMessagesAndShowToUser(groupId, intervalId) {
       console.log("no old messages");
       oldMessages = [];
       lastMsgId = 0;
-
-      // if (lastMsgId !== 0) {
     } else {
       messages = oldMessages;
-
       lastMsgId = oldMessages[oldMessages.length - 1].id;
     }
-    console.log("last msg id", lastMsgId);
-    // console.log('oldmsgs1', oldMessages);
-    // const res = await axios.get(
-    //   `http://localhost:3000/message/fetchNewMsgs/?lastMsgId=${lastMsgId}`
-    // );
+    // console.log("last msg id", lastMsgId);
+    console.log("oldmsgs1", oldMessages);
     const res = await axios.get(
       `http://localhost:3000/message/fetchNewMsgs/?lastMsgId=${lastMsgId}&groupId=${groupId}`
     );
-    // console.log('fetch res', res);
+    console.log("fetch res", res);
     if (res.status === 200) {
       const newMessages = res.data.messages;
-      let messages = oldMessages.concat(newMessages);
+      // let messages = oldMessages.concat(newMessages);
       messages = oldMessages.concat(newMessages);
       if (messages.length > 10) {
         messages = messages.slice(messages.length - 10, messages.length);
       }
-      // console.log('messages', messages);
-      // localStorage.setItem("messages", JSON.stringify(messages));
-      //  showChatToUser(messages);
+      console.log("messages", messages);
     }
-
     let currentMsgs = [];
     for (let i = 0; i < messages.length; i++) {
       if (messages[i].groupId == groupId) {
@@ -90,13 +80,13 @@ async function fetchMessagesAndShowToUser(groupId, intervalId) {
     console.log(error);
   }
 }
-
+//frontent msg
 function showChatToUser(messages) {
   try {
     const chatul = document.getElementById("chat-ul");
     chatul.innerHTML = "";
+    console.log("messages");
     messages.forEach((message) => {
-      // chatBody.innerHTML += message.message + `<br>`;
       // chatBody.innerHTML += message.from+': '+ message.message + `<br>`;
       chatul.innerHTML += `
                 <p>
@@ -160,10 +150,6 @@ document.getElementById("chat-list").onclick = async (e) => {
     if (previousIntervalId) {
       clearInterval(previousIntervalId);
     }
-    // console.log(e.target.nodeName);
-    // if (e.target.nodeName === "P") {
-    //   // e.target.setAttribute('class', 'active');
-    //   const groupId = e.target.id;
 
     if (e.target.nodeName === "BUTTON") {
       // console.log(e.target.parentElement.children[0].id);
@@ -182,7 +168,7 @@ document.getElementById("chat-list").onclick = async (e) => {
       }
       await new Promise((resolve, reject) => {
         localStorage.setItem("groupId", groupId);
-        // localStorage.removeItem('messages');
+        // localStorage.setItem("messages", message);
         resolve();
       });
       fetchMessagesAndShowToUser(groupId);
@@ -198,7 +184,6 @@ document.getElementById("open-chat").onclick = (e) => {
   e.preventDefault();
   try {
     document.getElementById("members-list").classList.add("active");
-    // console.log('this is getting called');
     const groupId = localStorage.getItem("groupId");
     fetchMembersAndShowToUser(groupId);
   } catch (error) {

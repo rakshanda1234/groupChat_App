@@ -16,6 +16,8 @@ document.getElementById("loginform").onsubmit = async (e) => {
       confirm("User logged in successfully!");
 
       localStorage.setItem("token", res.data.token);
+      // localStorage.setItem("email", res.data.email);
+      // localStorage.setItem("lastMsgId ", "[]");
 
       window.location.href = "../chat/chat.html";
     }

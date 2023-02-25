@@ -21,7 +21,7 @@ exports.saveMessage = async (req, res, next) => {
       await req.user.createMessage({
         message: message,
         groupId: groupId,
-        // from: req.user.email,
+        from: req.user.name,
       });
 
       res.status(200).json({ message: "msg saved to database" });
@@ -33,17 +33,19 @@ exports.saveMessage = async (req, res, next) => {
     res.status(500).json({ message: "something went wrong" });
   }
 };
+
 exports.fetchNewMessages = async (req, res, next) => {
   try {
     const lastMsgId = +req.query.lastMsgId;
     const groupId = +req.query.groupId;
     console.log("msg id in backend:", lastMsgId);
-    console.log("grp id in backend to fetch msg:", groupId);
+    // console.log("grp id in backend to fetch msg:", groupId);
     // const group = await Group.findByPk(groupId);
     // const messages = await Message.findAll({where: {[Op.and]:[{id:  {[Op.gt]: lastMsgId}}, {groupId: groupId}]}});
     const messages = await Message.findAll({
       where: { id: { [Op.gt]: lastMsgId } },
     });
+
     if (messages.length > 0) {
       res.status(200).json({ messages: messages });
     } else {
@@ -54,6 +56,7 @@ exports.fetchNewMessages = async (req, res, next) => {
     res.status(500).json({ message: "could not fetch messages" });
   }
 };
+
 function isValidMessage(message) {
   if (typeof message === "string" && message.length > 0) {
     return true;
