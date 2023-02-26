@@ -1,3 +1,5 @@
+const baseUrl = `http://34.224.95.210:3000`;
+
 document.getElementById("add-member-form").onsubmit = async (e) => {
   e.preventDefault();
   try {
@@ -5,7 +7,7 @@ document.getElementById("add-member-form").onsubmit = async (e) => {
     const token = localStorage.getItem("token");
     const email = document.getElementById("email").value;
     let res = await axios.post(
-      "http://localhost:3000/admin/addUser",
+      `${baseUrl}/admin/addUser`,
       {
         groupId: groupId,
         email: email,

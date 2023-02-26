@@ -1,3 +1,5 @@
+const baseUrl = `http://34.224.95.210:3000`;
+
 function forgotPass(event) {
   event.preventDefault();
   const email = event.target.emailId.value;
@@ -9,7 +11,7 @@ function forgotPass(event) {
   //console.log(obj);
 
   axios
-    .post("http://localhost:3000/pass/forgot", obj, {
+    .post(`${baseUrl}/pass/forgot`, obj, {
       headers: { Authorization: token },
     })
     .then((response) => {

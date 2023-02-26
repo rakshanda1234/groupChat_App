@@ -1,3 +1,5 @@
+const baseUrl = `http://34.224.95.210:3000`;
+
 document.getElementById("loginform").onsubmit = async (e) => {
   e.preventDefault();
 
@@ -5,7 +7,7 @@ document.getElementById("loginform").onsubmit = async (e) => {
     const email = document.getElementById("emailField").value;
     const password = document.getElementById("passwordField").value;
 
-    let res = await axios.post("http://localhost:3000/user/login", {
+    let res = await axios.post(`${baseUrl}/user/login`, {
       email,
       password,
     });

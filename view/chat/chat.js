@@ -1,3 +1,5 @@
+const baseUrl = `http://34.224.95.210:3000`;
+
 document.getElementById("chat-form").onsubmit = async (e) => {
   e.preventDefault();
   try {
@@ -10,7 +12,7 @@ document.getElementById("chat-form").onsubmit = async (e) => {
       // throw new Error('no group selected');
     }
     const res = await axios.post(
-      "http://localhost:3000/message/send",
+      `${baseUrl}/message/send`,
       {
         message: message,
         groupId: groupId,
@@ -55,7 +57,7 @@ async function fetchMessagesAndShowToUser(groupId, intervalId) {
     // console.log("last msg id", lastMsgId);
     console.log("oldmsgs1", oldMessages);
     const res = await axios.get(
-      `http://localhost:3000/message/fetchNewMsgs/?lastMsgId=${lastMsgId}&groupId=${groupId}`
+      `${baseUrl}/message/fetchNewMsgs/?lastMsgId=${lastMsgId}&groupId=${groupId}`
     );
     console.log("fetch res", res);
     if (res.status === 200) {
@@ -107,7 +109,7 @@ document.getElementById("new-group-btn").onclick = async (e) => {
 async function fetchGroupsAndShowToUser() {
   try {
     const token = localStorage.getItem("token");
-    const res = await axios.get("http://localhost:3000/chat/getGroups", {
+    const res = await axios.get(`${baseUrl}/chat/getGroups`, {
       headers: {
         Authorization: token,
       },
@@ -171,10 +173,10 @@ document.getElementById("chat-list").onclick = async (e) => {
         // localStorage.setItem("messages", message);
         resolve();
       });
-      fetchMessagesAndShowToUser(groupId);
-      // const intervalId = setInterval(() => {
-      //   fetchMessagesAndShowToUser(groupId, intervalId);
-      // }, 1000);
+      // fetchMessagesAndShowToUser(groupId);
+      const intervalId = setInterval(() => {
+        fetchMessagesAndShowToUser(groupId, intervalId);
+      }, 1000);
     }
   } catch (error) {
     console.log(error);
@@ -195,7 +197,7 @@ async function fetchMembersAndShowToUser(groupId) {
   try {
     const token = localStorage.getItem("token");
     const res = await axios.get(
-      `http://localhost:3000/chat/getMembers/?groupId=${groupId}`,
+      `${baseUrl}/chat/getMembers/?groupId=${groupId}`,
       {
         headers: {
           Authorization: token,
@@ -262,7 +264,7 @@ async function makeAdmin(idString) {
     const token = localStorage.getItem("token");
     const groupId = localStorage.getItem("groupId");
     const res = await axios.put(
-      "http://localhost:3000/admin/makeAdmin",
+      `${baseUrl}/admin/makeAdmin`,
       { userId: userId, groupId: groupId },
       {
         headers: {
@@ -294,10 +296,7 @@ async function removeMember(idString) {
       },
       data: { userId: userId, groupId: groupId },
     };
-    const res = await axios.delete(
-      "http://localhost:3000/admin/removeFromGroup",
-      config
-    );
+    const res = await axios.delete(`${baseUrl}/admin/removeFromGroup`, config);
     if (res.status === 200) {
       console.log("removing user response:", res);
       confirm("user removed from group");
@@ -317,7 +316,7 @@ async function removeAdminPermission(idString) {
     const token = localStorage.getItem("token");
     const groupId = localStorage.getItem("groupId");
     const res = await axios.put(
-      "http://localhost:3000/admin/removeAdmin",
+      "${baseUrl}/admin/removeAdmin",
       { userId: userId, groupId: groupId },
       {
         headers: {

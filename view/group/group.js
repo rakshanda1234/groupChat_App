@@ -1,10 +1,12 @@
+const baseUrl = `http://34.224.95.210:3000`;
+
 document.getElementById("group-name-form").onsubmit = async (e) => {
   e.preventDefault();
   try {
     const groupname = document.getElementById("groupname");
     const token = localStorage.getItem("token");
     const res = await axios.post(
-      "http://localhost:3000/chat/nameTheGroup",
+      `${baseUrl}/chat/nameTheGroup`,
       {
         groupname: groupname.value,
         groupid: sessionStorage.getItem("createdGroupId"),

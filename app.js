@@ -1,11 +1,19 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 
 const sequelize = require("./util/database");
 
@@ -34,6 +42,9 @@ app.use("/message", messageRoutes);
 app.use("/chat", chatRoutes);
 app.use("/admin", adminRoutes);
 
+app.use("/", (req, res) => {
+  res.sendFile(path.join(__dirname, `view/${req.url}`));
+});
 sequelize
   .sync()
   .then(() => {
