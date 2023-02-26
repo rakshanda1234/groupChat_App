@@ -337,3 +337,16 @@ async function removeAdminPermission(idString) {
     }
   }
 }
+
+// function sendMedia() {
+//   axios
+//     .post("http://localhost:3000/upload", {
+//       headers: { Authorization: token },
+//     })
+//     .then((res) => {
+//       console.log(res.data.fileURL);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
