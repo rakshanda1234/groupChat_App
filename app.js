@@ -8,12 +8,19 @@ const bodyParser = require("body-parser");
 app.use(cors());
 app.use(bodyParser.json());
 
+const helmet = require("helmet");
+const morgan = require("morgan");
+
 app.use(
   cors({
     origin: "*",
     credentials: true,
   })
 );
+
+// app.use(cors());
+
+app.use(helmet());
 
 const sequelize = require("./util/database");
 

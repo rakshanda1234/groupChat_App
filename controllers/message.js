@@ -3,6 +3,8 @@ const Group = require("../models/group");
 const GroupUser = require("../models/groupUser");
 const { Op } = require("sequelize");
 
+// const S3Services = require("../services/s3Services");
+
 exports.saveMessage = async (req, res, next) => {
   try {
     const message = req.body.message;
@@ -64,3 +66,20 @@ function isValidMessage(message) {
     return false;
   }
 }
+// exports.uploadFile = async (req, res) => {
+//   try {
+//     // console.log(req.file);
+//     // const filename = `user-${req.user.id}/${
+//     //   req.file.filename
+//     // }_${new Date()}.png`;
+
+//     // console.log(filename);
+//     // const fileURL = await S3Services.uploadToS3(req.file.path, filename);
+
+//     const fileURL = await S3Services.uploadFile("assets/flower.jpg");
+//     res.status(200).json({ success: true, fileURL });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json(error);
+//   }
+// };

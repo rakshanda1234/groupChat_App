@@ -1,5 +1,5 @@
-const baseUrl = `http://34.224.95.210:3000`;
-
+// const baseUrl = `http://34.224.95.210:3000`;
+const baseUrl = `http://localhost:3000`;
 document.getElementById("new-chat-form").onsubmit = async (e) => {
   e.preventDefault();
   try {

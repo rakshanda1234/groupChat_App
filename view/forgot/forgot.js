@@ -1,4 +1,5 @@
-const baseUrl = `http://34.224.95.210:3000`;
+// const baseUrl = `http://34.224.95.210:3000`;
+const baseUrl = `http://localhost:3000`;
 
 function forgotPass(event) {
   event.preventDefault();

@@ -1,5 +1,5 @@
-const baseUrl = `http://34.224.95.210:3000`;
-
+// const baseUrl = `http://34.224.95.210:3000`;
+const baseUrl = `http://localhost:3000`;
 document.getElementById("chat-form").onsubmit = async (e) => {
   e.preventDefault();
   try {
@@ -173,10 +173,10 @@ document.getElementById("chat-list").onclick = async (e) => {
         // localStorage.setItem("messages", message);
         resolve();
       });
-      // fetchMessagesAndShowToUser(groupId);
-      const intervalId = setInterval(() => {
-        fetchMessagesAndShowToUser(groupId, intervalId);
-      }, 1000);
+      fetchMessagesAndShowToUser(groupId);
+      // const intervalId = setInterval(() => {
+      //   fetchMessagesAndShowToUser(groupId, intervalId);
+      // }, 1000);
     }
   } catch (error) {
     console.log(error);
@@ -316,7 +316,7 @@ async function removeAdminPermission(idString) {
     const token = localStorage.getItem("token");
     const groupId = localStorage.getItem("groupId");
     const res = await axios.put(
-      "${baseUrl}/admin/removeAdmin",
+      `${baseUrl}/admin/removeAdmin`,
       { userId: userId, groupId: groupId },
       {
         headers: {
@@ -336,3 +336,19 @@ async function removeAdminPermission(idString) {
     }
   }
 }
+
+// function sendMedia() {
+//   axios
+//     .post(
+//       `${baseUrl}/upload`
+//       // headers: { Authorization: token },
+//     )
+//     .then((res) => {
+//       console.log(res.data.fileURL);
+//       console.log(res);
+//       alert("File uploaded to S3 successfully");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
